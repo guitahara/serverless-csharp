@@ -1,0 +1,23 @@
+service: coreService
+
+provider:
+  name: aws
+  runtime: dotnetcore2.1
+
+package:
+  individually: true
+
+functions:
+  hello:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
+    events:
+      - http: GET hello
+    package:
+      artifact: bin/release/netcoreapp2.1/hello.zip
+  subtract:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Subtract
+    events:
+      - http: GET subtract
+    package:
+      artifact: bin/release/netcoreapp2.1/hello.zip
+
